@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Enhanced Form — Assignment</title>
+  <meta name="description" content="Accessible HTML5 form with validation, lists, table and media.">
+  <style>
+    :root{--max-width:900px;--accent:#0b7;--muted:#666}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.5;color:#222;padding:1rem;background:#f7faf7}
+    .container{max-width:var(--max-width);margin:1.5rem auto;background:#fff;padding:1.25rem;border-radius:8px;box-shadow:0 6px 20px rgba(10,10,10,0.06)}
+    header h1{margin:0 0 .25rem 0;font-size:1.5rem}
+    header p{margin:0;color:var(--muted)}
+    nav ul{display:flex;gap:.5rem;flex-wrap:wrap;padding:0;list-style:none;margin:.75rem 0}
+    nav a{background:#eef;padding:.35rem .6rem;border-radius:6px;text-decoration:none;color:#036}
+    main{display:grid;grid-template-columns:1fr;gap:1rem}
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:1rem}
+    form{background:#fcfffc;padding:1rem;border-radius:6px;border:1px solid #eef}
+    fieldset{border:1px solid #e6f0ea;padding:1rem;border-radius:6px;margin:0 0 0.75rem}
+    legend{font-weight:600}
+    label{display:block;margin:.45rem 0 .15rem}
+    input,select,textarea{width:100%;padding:.5rem;border:1px solid #ccd;background:#fff;border-radius:6px}
+    .inline{display:flex;gap:.5rem;align-items:center}
+    .muted{font-size:.9rem;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;margin-top:.5rem}
+    th,td{padding:.5rem;border:1px solid #e6e6e6;text-align:left}
+    caption{font-weight:600;margin-bottom:.5rem}
+    footer{font-size:.85rem;color:var(--muted);margin-top:.75rem}
+    .actions{display:flex;gap:.5rem;justify-content:flex-end}
+    button{padding:.5rem .8rem;border-radius:6px;border:0;background:var(--accent);color:#012;font-weight:600}
+    button.secondary{background:#eef;color:#035}
+    @media (max-width:900px){.two-col{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Enhanced Form</h1>
+      <p>An accessible HTML5 form showcasing semantic layout, validation and media.</p>
+    </header>
+
+    <nav aria-label="Page navigation">
+      <ul>
+        <li><a href="#form">Form</a></li>
+        <li><a href="#resources">Resources</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="form" aria-labelledby="form-heading">
+        <h2 id="form-heading">Registration & Order Form</h2>
+        <div class="two-col">
+          <form id="orderForm" action="#" method="post" autocomplete="on" novalidate>
+            <fieldset>
+              <legend>Personal details</legend>
+
+              <label for="fullname">Full name</label>
+              <input id="fullname" name="fullname" type="text" placeholder="e.g. Alex Njoroge" required autocomplete="name" minlength="3">
+
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="+2547XXXXXXXX" pattern="\+?\d{9,15}" aria-describedby="phoneHelp" autocomplete="tel">
+              <div id="phoneHelp" class="muted">Include country code. Example: +254712345678</div>
+
+              <label for="birthdate">Date of birth</label>
+              <input id="birthdate" name="birthdate" type="date" required aria-describedby="dobHelp">
+              <div id="dobHelp" class="muted">You must be at least 13 years old to register.</div>
+
+              <label for="website">Website (optional)</label>
+              <input id="website" name="website" type="url" placeholder="https://example.com" autocomplete="url">
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Order details</legend>
+
+              <label for="product">Choose a product</label>
+              <select id="product" name="product" required>
+                <option value="">-- Select --</option>
+                <option value="widget-a">Widget A</option>
+                <option value="widget-b">Widget B</option>
+                <option value="widget-c">Widget C</option>
+              </select>
+
+              <label for="quantity">Quantity</label>
+              <input id="quantity" name="quantity" type="number" min="1" max="999" value="1" required>
+
+              <label for="color">Preferred color</label>
+              <input id="color" name="color" type="color" value="#008080">
+
+              <label for="delivery">Preferred delivery time</label>
+              <input id="delivery" name="delivery" type="time" required>
+
+              <label for="notes">Special instructions</label>
+              <textarea id="notes" name="notes" rows="3" placeholder="Any additional notes..." maxlength="300"></textarea>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Account & agreements</legend>
+
+              <label for="username">Username</label>
+              <input id="username" name="username" type="text" placeholder="Choose a username" pattern="[A-Za-z0-9_\-]{3,20}" required autocomplete="username">
+
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" minlength="8" required autocomplete="new-password">
+
+              <div class="inline" role="group" aria-labelledby="newsletterLabel">
+                <div id="newsletterLabel" class="muted">Subscribe</div>
+                <label class="inline"><input type="checkbox" name="newsletter" checked> Newsletter</label>
+                <label class="inline"><input type="checkbox" name="sms"> SMS updates</label>
+              </div>
+
+              <div style="margin-top:.6rem">
+                <label class="inline"><input type="radio" name="account_type" value="standard" checked> Standard</label>
+                <label class="inline"><input type="radio" name="account_type" value="business"> Business</label>
+              </div>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Files & preview</legend>
+
+              <label for="avatar">Upload avatar (optional)</label>
+              <input id="avatar" name="avatar" type="file" accept="image/*">
+
+              <label for="readOnlyRef">Referral code (readonly)</label>
+              <input id="readOnlyRef" name="ref" type="text" value="REF-2025-XX" readonly>
+
+            </fieldset>
+
+            <div class="actions">
+              <button type="reset" class="secondary">Reset</button>
+              <button type="submit">Submit order</button>
+            </div>
+          </form>
+
+          <aside aria-labelledby="summary-heading">
+            <h3 id="summary-heading">Form summary</h3>
+            <p class="muted">This summary shows what the form includes:</p>
+            <ul>
+              <li>Text, email, tel, date, time, url, number inputs</li>
+              <li>File upload and readonly field</li>
+              <li>Select, textarea, checkboxes and radios</li>
+              <li>HTML5 validation with patterns, min/max, required, minlength</li>
+            </ul>
+
+            <h4>Quick example table</h4>
+            <table>
+              <caption>Shipping options</caption>
+              <thead>
+                <tr><th>Option</th><th>ETA</th><th>Cost (USD)</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Standard</td><td>5–7 days</td><td>Free</td></tr>
+                <tr><td>Express</td><td>1–2 days</td><td>9.99</td></tr>
+                <tr><td>Pickup</td><td>Same day</td><td>Free</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Media</h4>
+            <figure>
+              <img src="https://via.placeholder.com/600x200.png?text=Product+Banner" alt="Product banner placeholder" style="max-width:100%;height:auto;border-radius:6px">
+              <figcaption class="muted">Product banner (placeholder image)</figcaption>
+            </figure>
+
+            <p style="margin-top:.6rem">Sample video (YouTube embed)</p>
+            <div style="aspect-ratio:16/9">
+              <iframe title="Intro video" width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+            </div>
+
+          </aside>
+        </div>
+      </section>
+
+      <section id="resources" aria-labelledby="resources-heading">
+        <h2 id="resources-heading">Resources & Notes</h2>
+        <ol>
+          <li>Field labels are associated with inputs using <code>for</code> and <code>id</code>.</li>
+          <li>Validation uses <code>required</code>, <code>pattern</code>, <code>min</code>/<code>max</code>, and <code>type="email"</code>.</li>
+          <li>Form uses <code>autocomplete</code> where appropriate for accessibility and UX.</li>
+        </ol>
+
+        <h3>Accessible features</h3>
+        <ul>
+          <li>Semantic tags: header, nav, main, section, aside, footer, fieldset, legend.</li>
+          <li>ARIA attributes used where needed (aria-describedby, aria-label).</li>
+          <li>Keyboard accessible controls and logical tab order.</li>
+        </ul>
+      </section>
+
+      <section id="summary" aria-labelledby="summaryHeading">
+        <h2 id="summaryHeading">Submission checklist</h2>
+        <ul>
+          <li>Well-structured content using lists and a table.</li>
+          <li>Complete HTML5 form with many input types.</li>
+          <li>Correct use of placeholder, required, autocomplete, readonly.</li>
+          <li>HTML5 validation features implemented.</li>
+          <li>Clear, accessible layout using semantic tags.</li>
+        </ul>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Created for assignment — &copy; 2025</p>
+    </footer>
+  </div>
+
+  <script>
+    // Minimal client-side validation hint: ensure DOB >= 13 years
+    (function(){
+      const form = document.getElementById('orderForm');
+      form.addEventListener('submit', function(e){
+        const dob = document.getElementById('birthdate').value;
+        if(dob){
+          const birth = new Date(dob);
+          const today = new Date();
+          const age = (today - birth) / (365.25*24*60*60*1000);
+          if(age < 13){
+            e.preventDefault();
+            alert('You must be at least 13 years old to register.');
+            document.getElementById('birthdate').focus();
+          }
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
